@@ -1,0 +1,1 @@
+import Solver from '@/components/Solver';export default function Page(){return <><div className="hero"><h1 className="title">Word Problem Solver</h1><p className="muted">Paste a school math problem. Formula Desk tries dedicated deterministic solvers before falling back.</p></div><Solver/></>}

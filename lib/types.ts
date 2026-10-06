@@ -1,0 +1,2 @@
+export type SolveResult={solved:boolean;answer:string;answers?:string[];title:string;category:string;easyFormula:string;standardFormula?:string;setup:string;steps:string[];units?:string;rounding?:string;relatedFormulaIds?:string[]};
+export type Formula={id:string;title:string;category:string;easyFormula:string;standardFormula:string;description:string;aliases:string[];keywords:string[];units:string[];example:string};
