@@ -38,14 +38,23 @@ for(const [cat,t] of Object.entries(unitTables))for(const u of t.units)
 if([u[0],plural(u),u[1]].some(x=>x.toLowerCase()===w))return {cat,name:u[0],abbr:u[1],factor:u[2]};
 return null}
 
+
+// Easy version of a conversion factor: use "÷" when the flipped number is short ("÷ 1,000"
+// beats "× 0.001"), round long factors to 4 significant digits, avoid e-notation.
+const sigDigits=(x:number)=>String(+x.toPrecision(10)).replace(/^0\.0*|\./g,'').replace(/e.*$/,'').replace(/0+$/,'').length;
+const plain=(x:number)=>{const a=Math.abs(x);if(a>=1e15||a<1e-6){const e=Math.floor(Math.log10(a)),m=+(x/10**e).toPrecision(4);return `${m} × 10^${e}`}return new Intl.NumberFormat('en-US',{maximumSignificantDigits:4,maximumFractionDigits:12,useGrouping:a>=10000}).format(x)};
+export function easyFactor(f:number):{op:'×'|'÷';num:string;exact:boolean}{
+const inv=1/f,useDiv=f<1&&(sigDigits(inv)<=3||(f<0.01&&sigDigits(inv)<=4));
+const v=useDiv?inv:f;
+return {op:useDiv?'÷':'×',num:plain(v),exact:+v.toPrecision(4)===+v.toPrecision(10)}}
 export function unitConversionFormulas(){
 const out:{id:string;title:string;category:string;easyFormula:string;standardFormula:string;description:string;aliases:string[];keywords:string[];units:string[];example:string}[]=[];
 for(const [cat,t] of Object.entries(unitTables))for(const a of t.units)for(const b of t.units){
 if(a===b)continue;
-const f=a[2]/b[2];
+const f=a[2]/b[2],ef=easyFactor(f);
 out.push({id:`conv-${cat}-${a[0]}-${b[0]}`.toLowerCase().replace(/[^a-z0-9]+/g,'-'),
 title:`${cap(plural(a))} to ${cap(plural(b))}`,category:`Conversions: ${cat}`,
-easyFormula:`${cap(plural(b))} = ${plural(a)} × ${sig(f)}`,standardFormula:`${b[1]} = ${a[1]} × ${sig(f)}`,
+easyFormula:`${cap(plural(b))} ${ef.exact?'=':'≈'} ${plural(a)} ${ef.op} ${ef.num}`,standardFormula:`${b[1]} = ${a[1]} × ${sig(f)}`,
 description:`Convert ${plural(a)} to ${plural(b)}. 1 ${a[0]} = ${sig(f)} ${f===1?b[0]:plural(b)}.`,
 aliases:[`${a[1]} to ${b[1]}`,`${a[0]} to ${b[0]}`],keywords:['conversion','units',cat.toLowerCase(),a[0],b[0]],units:[a[1],b[1]],
 example:`10 ${a[1]} = ${sig(10*f)} ${b[1]}`})}
