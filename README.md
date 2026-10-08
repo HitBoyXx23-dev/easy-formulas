@@ -11,4 +11,4 @@ npm run dev
 ## Deploy
 Import the repository into Vercel as a Next.js project.
 
-Note: This packaged build contains a curated starter formula library and an extensible data schema. It does not falsely pad the library to 500 entries with duplicate placeholder formulas.
+Note: The library ships 1,200+ real formulas: hand-written references (geometry, algebra, trig, statistics, probability, physics, chemistry, finance, calculus) plus every unit-to-unit conversion generated from the tables in `data/units.ts`. No placeholders or duplicates. Add units to a table or formulas to `data/extra.ts` to grow it.

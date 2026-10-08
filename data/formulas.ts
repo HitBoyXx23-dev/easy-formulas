@@ -1,4 +1,6 @@
 import {Formula} from '@/lib/types';
+import {unitConversionFormulas} from './units';
+import {extraFormulas} from './extra';
 const base:Formula[]=[
 ['rectangle-area','Rectangle Area','Geometry','Area = length × width','A = l × w','Find the area inside a rectangle.',['area rectangle'],['length','width','area'],['m²','ft²'],'7.5 × 5.3 = 39.75'],
 ['gear-ratio','Gear Ratio','Ratio & Proportion','Gear ratio = front teeth ÷ rear teeth','G = F ÷ R','Compares front and rear sprocket teeth.',['bike gear ratio'],['sprocket','teeth','ratio'],['ratio'],'36 ÷ 12 = 3:1'],
@@ -25,5 +27,6 @@ const base:Formula[]=[
 ['currency-rate-change','Exchange Rate Percent Change','Currency','Percent change = (new rate - old rate) ÷ old rate × 100%','%Δr = (r₂-r₁)/r₁ × 100%','Measure how much an exchange rate changed as a percentage.',['exchange rate change','currency percent change'],['currency','exchange','percent change'],['%'],'(1.40 - 1.35) ÷ 1.35 × 100%'],
 ['foreign-purchase-cost','Foreign Purchase Cost','Currency','Home-currency cost = foreign price × home currency per foreign currency','C = P × r','Find the home-currency cost of an item priced in a foreign currency.',['international purchase','foreign price'],['currency','purchase','price','exchange'],['currency'],'80 EUR × 1.10 USD/EUR = 88 USD']
 ].map(x=>({id:x[0],title:x[1],category:x[2],easyFormula:x[3],standardFormula:x[4],description:x[5],aliases:x[6],keywords:x[7],units:x[8],example:x[9]} as Formula));
-const conversions:[string,string,string,string][]=[['Feet to Inches','Conversions: Length','Inches = feet × 12','in = ft × 12'],['Miles to Kilometers','Conversions: Length','Kilometers = miles × 1.609344','km = mi × 1.609344'],['Pounds to Kilograms','Conversions: Weight','Kilograms = pounds × 0.45359237','kg = lb × 0.45359237'],['Minutes to Hours','Conversions: Time','Hours = minutes ÷ 60','h = min ÷ 60'],['Celsius to Fahrenheit','Temperature','Fahrenheit = Celsius × 9/5 + 32','F = C × 9/5 + 32']];
-export const formulas=[...base,...conversions.map((x,i)=>({id:`conv-${i}`,title:x[0],category:x[1],easyFormula:x[2],standardFormula:x[3],description:`Useful ${x[0].toLowerCase()} conversion.`,aliases:[x[0].toLowerCase()],keywords:['conversion','units'],units:[],example:''}))];
+const seen=new Set(base.map(x=>x.title.toLowerCase()));
+const generated=[...extraFormulas,...unitConversionFormulas()].filter(f=>!seen.has(f.title.toLowerCase()));
+export const formulas:Formula[]=[...base,...generated];
