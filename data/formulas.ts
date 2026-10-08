@@ -6,6 +6,7 @@ const base:Formula[]=[
 ['inch-mm','Inches to Millimeters','Conversions: Length','Millimeters = inches × 25.4','mm = in × 25.4','Convert inches to millimeters.',['in to mm','inch millimeter'],['bike wheel','diameter','metric'],['in','mm'],'26 in = 660.4 mm'],
 ['grams-pounds','Grams to Pounds','Conversions: Weight','Pounds = grams ÷ 453.592','lb = g / 453.592','Convert grams to pounds.',['g to lb'],['mass','weight'],['g','lb'],'800 g ≈ 1.76 lb'],
 ['speed','Speed','Rate','Speed = distance ÷ time','v = d / t','Find speed from distance and time.',['velocity'],['distance','time','rate'],['mph','m/s'],'120 miles / 2 h = 60 mph'],
+['speed-compare','Compare Speeds in Different Units','Rate','Convert both speeds to the same unit, then compare','v(m/s) = v × m per unit ÷ s per unit','Compare two rates given in different units, like mph and m/s.',['faster swimmer','compare mph and m/s'],['faster','slower','speed','swim','convert'],['mph','m/s'],'2.5 mph ≈ 1.12 m/s < 1.8 m/s'],
 ['percent','Percent of a Number','Percent','Part = percent × whole','P = rW','Find a percentage of a value.',['percentage'],['percent','part','whole'],['%'],'20% of 50 = 10'],
 ['circle-area','Circle Area','Geometry','Area = π × radius²','A = πr²','Find the area of a circle.',['area circle'],['radius','pi'],['unit²'],'r=3 → 28.274'],
 ['pythagorean','Pythagorean Theorem','Geometry','hypotenuse² = leg² + leg²','c² = a² + b²','Find a missing side in a right triangle.',['right triangle'],['hypotenuse','triangle'],[],'3²+4²=5²'],

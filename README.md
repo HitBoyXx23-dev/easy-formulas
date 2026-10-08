@@ -1,6 +1,6 @@
 # Formula Desk
 
-A compact Next.js math utility with deterministic word-problem solvers, calculator, unit converter, formula search, local favorites/history, and persistent theme.
+A compact Next.js math utility with deterministic word-problem solvers (including comparing speeds given in different units, e.g. mph vs m/s), calculator, unit converter, formula search, local favorites/history, and persistent theme.
 
 ## Run
 ```bash
