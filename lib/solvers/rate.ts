@@ -54,7 +54,7 @@ units:u,rounding:d===null?'Rounded to 2 decimal places':`${d} decimal places`};}
 // "Convert 5 miles to kilometers" / "How many feet are in 3 miles?"
 export function solveConversion(q:string):SolveResult|null{
 const d=decimalsFrom(q);
-let m=q.match(/convert\s+(\d[\d,]*(?:\.\d+)?)\s*([a-zµ°²³/ -]+?)\s+(?:to|into)\s+([a-zµ°²³/ -]+?)(?:[?.,]|$)/i);
+let m=q.match(/convert\s+(\d[\d,]*(?:\.\d+)?)\s*([\p{L}µ°²³·′/ -]+?)\s+(?:to|into)\s+([\p{L}µ°²³·′/ -]+?)(?:[?.,]|$)/iu);
 let n:number,a:string,b:string;
 if(m){n=+m[1].replace(/,/g,'');a=m[2];b=m[3]}
 else{m=q.match(/how\s+many\s+([a-z ]+?)\s+(?:are\s+)?in\s+(\d[\d,]*(?:\.\d+)?)\s*([a-z ]+?)\s*[?.]?$/i);if(!m)return null;n=+m[2].replace(/,/g,'');a=m[3];b=m[1]}
