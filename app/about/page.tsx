@@ -1,0 +1,7 @@
+import Link from 'next/link';
+export const metadata={title:'How it works | Formula Desk'};
+const solvers=[['Compare speeds','Alina swims 2.5 miles per hour, Talia swims 1.8 meters per second. Who is faster?'],['Rates with unit conversion','28 kilograms in 1 week, 2.2 pounds in 1 kilogram: pounds per day?'],['Unit conversion','Convert 5 miles to kilometers'],['Average','Average of several numbers'],['Gear ratio','Front and rear sprocket teeth'],['Rectangle area','Length and width']];
+export default function Page(){return <><div className="hero"><h1 className="title">How it works</h1><p className="muted">Formula Desk solves problems with fixed rules on your device. It never guesses and never searches the web.</p></div>
+<div className="card" style={{padding:16}}><div className="label">Every answer shows</div><p>The final answer, an easy formula in plain words, the standard formula, the setup with your numbers, steps, units and any rounding you asked for.</p></div><br/>
+<div className="card" style={{padding:16}}><div className="label">Problem types the solver understands</div><ul>{solvers.map(([t,d])=><li key={t} style={{margin:'6px 0'}}><b>{t}</b>: <span className="muted">{d}</span></li>)}</ul></div><br/>
+<div className="row wraprow"><Link className="btn primary" href="/solver">Solve a problem</Link><Link className="btn" href="/formulas">Browse formulas</Link><Link className="btn" href="/categories">Browse categories</Link></div></>}
